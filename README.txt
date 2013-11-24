@@ -4,3 +4,6 @@ Butoane funcționale pentru editare elemente prezente în listă.
 Buton pentru ștergere toate elementele din listă.
 
 Elementele din listă sunt ordonate astfel încât produsele bifate (și tăiate de pe listă) să fie ultimele.
+
+UPDATE 12:27 AM
+Pentru simplitate, pagina poate fi văzută și la adresa http://swarm.cs.pub.ro/~aciobanu/shopping-list/
