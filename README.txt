@@ -1,0 +1,6 @@
+﻿Lista inițială are un input (lămâi, 1 kg). L-am lăsat acolo de dragul testării. 
+Butoane funcționale pentru adăugare noi elemente la listă.
+Butoane funcționale pentru editare elemente prezente în listă.
+Buton pentru ștergere toate elementele din listă.
+
+Elementele din listă sunt ordonate astfel încât produsele bifate (și tăiate de pe listă) să fie ultimele.
