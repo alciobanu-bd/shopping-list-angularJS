@@ -1,0 +1,14 @@
+.strike {
+  text-decoration: line-through;
+}
+.black {
+    color: black;
+}
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	display: inline;
+}

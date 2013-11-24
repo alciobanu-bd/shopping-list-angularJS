@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="shoppingListApp">
+	<head>
+		<title>Shopping list</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="lib/angular/angular.js"></script>
+		<script src="js/controllers.js"></script>
+	</head>
+
+	<body ng-controller="ShoppingListCtrl">
+
+		<div>
+			<ul>
+				<li style="list-style-type: none;" ng-repeat="item in items | orderBy:orderProp">
+					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name, item.description)">
+					</input>
+					<span ng-class="changeClass(item.bought)">
+						{{item.name}} ({{item.description}})
+					</span>
+				</li>
+			</ul>
+			<input type="button" value="+" ng-model="click" ng-click="toggleForm()">
+			</input>
+			<input type="text" placeholder="Item" ng-class="isVisible()">
+			</input>
+			<input type="text" placeholder="Description" ng-class="isVisible()">
+			</input>
+			<input type="button" value="Add" ng-class="isVisible()" ng-model="add" ng-click="addItem()">
+			</input>
+		</div>
+
+	</body>
+</html>
