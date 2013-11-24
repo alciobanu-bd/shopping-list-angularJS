@@ -44,7 +44,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
  				$scope.bought = false;
  			}
  		}
- 		
+
    	}
 
    	$scope.formName = '';
@@ -60,6 +60,12 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   			$scope.items.splice(i, 1);
   		}
   	};
+
+  }
+
+  $scope.removeAllItems = function () {
+
+  	$scope.items = [];
 
   }
 
