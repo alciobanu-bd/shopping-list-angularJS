@@ -15,17 +15,21 @@
 					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name, item.description)">
 					</input>
 					<span ng-class="changeClass(item.bought)">
-						{{item.name}} ({{item.description}})
+						{{item.name}} ({{item.description}}) 
+						<input type="button" value="Edit" ng-click="showFormInEditMode(item.name, item.description)">
+						</input>
+						<input type="button" value="Remove" ng-click="removeItem(item.name)">
+						</input>
 					</span>
 				</li>
 			</ul>
-			<input type="button" value="+" ng-model="click" ng-click="toggleForm()">
+			<input type="button" value="+" ng-model="click" ng-click="showForm()">
 			</input>
-			<input type="text" placeholder="Item" ng-class="isVisible()">
+			<input type="text" placeholder="Item" ng-model="formName" ng-class="isVisible()">
 			</input>
-			<input type="text" placeholder="Description" ng-class="isVisible()">
+			<input type="text" placeholder="Description" ng-model="formDescription" ng-class="isVisible()">
 			</input>
-			<input type="button" value="Add" ng-class="isVisible()" ng-model="add" ng-click="addItem()">
+			<input type="button" ng-value="inputMode" ng-model="add" ng-class="isVisible()" ng-click="addEditItem()">
 			</input>
 		</div>
 

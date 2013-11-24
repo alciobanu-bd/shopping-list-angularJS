@@ -6,27 +6,57 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   $scope.items = [
     {'name': 'lamai',
      'description': '1 kg',
- 	 'bought': false},
-    {'name': 'mere',
-     'description': '3 kg',
- 	 'bought': false},
-    {'name': 'cartofi',
-     'description': 'multi. ca ne e foame.',
  	 'bought': false}
   ];
 
-  $scope.orderProp = 'name';
+  $scope.orderProp = 'bought';
   $scope.formVisibilty = false;
   $scope.formName = '';
   $scope.formDescription = '';
+  $scope.editedItemName = '';
 
-  $scope.addItem = function (name, description) {
+  $scope.addEditItem = function () {
 
-  	$scope.items.push({
-  		'name': name,
-  		'description': description,
+	if ($scope.formName === '') {
+  		return;
+  	}
+
+  	for (var i = 0; i < $scope.items.length; i++) {
+  		if ($scope.items[i].name === $scope.formName) {
+  			return;
+  		}
+  	};
+
+  	if ($scope.inputMode === 'Add') {
+  		$scope.items.push({
+  		'name': $scope.formName,
+  		'description': $scope.formDescription,
 		'bought': false
-  	});
+	  	});
+  	}
+  	else {
+ 		for (var i = 0; i < $scope.items.length; i++) {
+ 			if ($scope.editedItemName === $scope.items[i].name) {
+ 				$scope.items[i].name = $scope.formName;
+ 				$scope.items[i].description = $scope.formDescription;
+ 				$scope.bought = false;
+ 			}
+ 		}
+   	}
+
+   	$scope.formName = '';
+  	$scope.formDescription = '';
+  	$scope.formVisibilty = false;
+
+  }
+
+  $scope.removeItem = function (name) {
+
+  	for (var i = 0; i < $scope.items.length; i++) {
+  		if ($scope.items[i].name === name) {
+  			$scope.items.splice(i, 1);
+  		}
+  	};
 
   }
 
@@ -73,9 +103,26 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
-  $scope.toggleForm = function () {
+  $scope.showForm = function () {
 
-  	$scope.formVisibilty = !$scope.formVisibilty;
+  	if ($scope.formVisibilty) {
+  		return;
+  	}
+  	$scope.inputMode = 'Add';
+  	$scope.formVisibilty = true;
+
+  }
+
+  $scope.showFormInEditMode = function (name, description) {
+
+  	if ($scope.formVisibilty) {
+  		return;
+  	}
+  	$scope.formName = name;
+  	$scope.formDescription = description;
+  	$scope.editedItemName = name;
+  	$scope.inputMode = 'Edit';
+  	$scope.formVisibilty = true;
 
   }
 
