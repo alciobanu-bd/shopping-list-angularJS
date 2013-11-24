@@ -21,13 +21,14 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   		return;
   	}
 
-  	for (var i = 0; i < $scope.items.length; i++) {
-  		if ($scope.items[i].name === $scope.formName) {
-  			return;
-  		}
-  	};
-
   	if ($scope.inputMode === 'Add') {
+
+		for (var i = 0; i < $scope.items.length; i++) {
+  			if ($scope.items[i].name === $scope.formName) {
+  				return;
+  			}
+  		};
+
   		$scope.items.push({
   		'name': $scope.formName,
   		'description': $scope.formDescription,
@@ -35,6 +36,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 	  	});
   	}
   	else {
+
  		for (var i = 0; i < $scope.items.length; i++) {
  			if ($scope.editedItemName === $scope.items[i].name) {
  				$scope.items[i].name = $scope.formName;
@@ -42,6 +44,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
  				$scope.bought = false;
  			}
  		}
+ 		
    	}
 
    	$scope.formName = '';

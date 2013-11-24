@@ -16,6 +16,8 @@
 					</input>
 					<span ng-class="changeClass(item.bought)">
 						{{item.name}} ({{item.description}}) 
+					</span>
+					<span>
 						<input type="button" value="Edit" ng-click="showFormInEditMode(item.name, item.description)">
 						</input>
 						<input type="button" value="Remove" ng-click="removeItem(item.name)">
