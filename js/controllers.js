@@ -15,21 +15,24 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   ];
 
   $scope.orderProp = 'bought';
-  $scope.formVisibilty = false;
-  $scope.form = {
-    'name': '', // modelul pentru numele din input la adaugare/editare
-    'description': '' // modelul pentru descrierea din input la adaugare/editare
+  $scope.formVisibilty = false; // adding form's visibility
+  $scope.form = { // model for the adding/editing input tag
+    // when the input in a form changes, this model changes
+    'name': '',
+    'description': ''
   };
-  $scope.edit_count = 0;
+  $scope.edit_count = 0; // used to stop possibility of editing 2 items at the same time
 
   $scope.addItem = function () {
 
   	if ($scope.form.name === '') {
+      // null string is not accepted
     	return;
     }
 
   	for (var i = 0; i < $scope.items.length; i++) {
   		if ($scope.items[i].name === $scope.form.name) {
+        // no duplicates
   			return;
   		}
   	};
@@ -58,18 +61,25 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
+  /**
+  Removes bought items from array.
+  */
   $scope.removeBoughtItems = function () {
 
-    	for (var i = 0; i < $scope.items.length; i++) {
-        if ($scope.items[i].bought === true) {
-          $scope.removeItem($scope.items[i].name);
-          i = -1;
-        }
-      };
+  	for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].bought === true) {
+        $scope.removeItem($scope.items[i].name);
+        i--; // for loop reverts to search
+        // this is needed because an element is removed while the array is traversed
+      }
+    };
 
   }
 
-  $scope.checkBoughtItem = function (name, description) {
+  /**
+  Flags a bought item.
+  */
+  $scope.checkBoughtItem = function (name) {
 
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === name) {
@@ -84,6 +94,9 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
+  /**
+  Used by html checkbox to check itself.
+  */
   $scope.checkCheckbox = function (name) {
 
   	for (var i = 0; i < $scope.items.length; i++) {
@@ -94,7 +107,10 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
-  $scope.changeClass = function (bought) {
+  /**
+  Returns strikethrough css class or not, depending on the state of an item (bought or not).
+  */
+  $scope.strikeItemOrNotClass = function (bought) {
 
   	if (bought) {
   		return "strike";
@@ -126,6 +142,10 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
+  /**
+  Visibility for the text of an item.
+  Visibility is shown when the item is not in edit mode and hidden when it is in edit mode.
+  */
   $scope.visibilityTextNormalMode = function (editModeOn) {
 
     if (editModeOn)
@@ -135,6 +155,10 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
+  /**
+  Visibility for the input boxes of an item.
+  Visibility is hidden when the item is not in edit mode and shown when it is in edit mode.
+  */
   $scope.visibilityTextEditMode = function (editModeOn) {
 
     if (editModeOn)
@@ -145,34 +169,37 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   }
 
   /**
-  Intra in edit mode daca nu este deja.
-  Iese din edit mode daca s-a terminat editarea.
-  Salveaza elementul editat in vector.
+  Enters edit mode if needed.
+  Quits edit mode when editing finished.
+  Saved the edited item in array.
   */
   $scope.editItem = function (name) {
 
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === name) {
         if (!$scope.items[i].editModeOn) {
-          if ($scope.edit_count == 0)  {
-            // daca nu e edit mode activ pe element, intram in edit mode 
-            // (doar daca nu e un alt element in edit mode)
-            $scope.form.name = $scope.items[i].name; // e pus in campul input numele actual
-            $scope.form.description = $scope.items[i].description; // e pusa in campul input descrierea actuala
-            $scope.items[i].editModeOn = true; // flag-uieste ca elementul se afla in edit mode
+          // preparing to enter edit mode
+          if ($scope.edit_count == 0)  { 
+            // if another item is being currently edited, quits edit mode
+            $scope.form.name = $scope.items[i].name; // copies the name of the item to the text input view
+            $scope.form.description = $scope.items[i].description; // copies the description of an item to input
+            $scope.items[i].editModeOn = true; // flags that item enters edit mode
             $scope.edit_count++;
             return;
           }
           else {
-            // s-a verificat elementul, nu se poate edita
+            // item is already checked, it can't be edited
             return;
           }
         }
         else {
-          // daca edit mode e activ, inseamna ca trebuie sa editam intrarea
-          $scope.items[i].name = $scope.form.name; // salveaza numele din model
-          $scope.items[i].description = $scope.form.description; // salveaza descrierea din model
-          $scope.items[i].editModeOn = false; // iese din edit mode
+          // if edit mode is on, item is going to be edited
+          if ($scope.form.name === '') {
+            return;
+          }
+          $scope.items[i].name = $scope.form.name; // saves the name from model (model is what user typed in textbox)
+          $scope.items[i].description = $scope.form.description; // saves the description from model
+          $scope.items[i].editModeOn = false; // flags that item exits edit mode
           $scope.form.name = '';
           $scope.form.description = '';
           $scope.edit_count--;

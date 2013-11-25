@@ -12,9 +12,9 @@
 		<div>
 			<ul>
 				<li style="list-style-type: none;" ng-repeat="item in items | orderBy:orderProp">
-					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name, item.description)">
+					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name)">
 					</input>
-					<span ng-class="changeClass(item.bought)">
+					<span ng-class="strikeItemOrNotClass(item.bought)">
 						<span ng-class="visibilityTextNormalMode(item.editModeOn)">
 							{{item.name}}
 						</span>
