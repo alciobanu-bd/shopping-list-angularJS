@@ -63,7 +63,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
     	for (var i = 0; i < $scope.items.length; i++) {
         if ($scope.items[i].bought === true) {
           $scope.removeItem($scope.items[i].name);
-          i = 0;
+          i = -1;
         }
       };
 
@@ -71,26 +71,16 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   $scope.checkBoughtItem = function (name, description) {
 
-  	for (var i = 0; i < $scope.items.length; i++) {
-  		if ($scope.items[i].name === name) {
-  			if ($scope.items[i].bought === false) {
-  				$scope.items[i] = {
-	  			  'name': name,
-	  			  'description': description,
-	  			  'bought': true,
-            'editModeOn': false
-	  			}
-  			}
-  			else {
-  				$scope.items[i] = {
-	  			'name': name,
-	  			'description': description,
-	  			'bought': false,
-          'editModeOn': false
-		  		}
-  			}
-  		}
-  	};
+    for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].name === name) {
+        if ($scope.items[i].bought === false) {
+          $scope.items[i].bought = true;
+        }
+        else {
+          $scope.items[i].bought = false;
+        }
+      }
+    };
 
   }
 
@@ -190,14 +180,6 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
         }
       }
     };
-
-  }
-
-  $scope.print = function () {
-
-    if ($scope.edit_count == 3)
-      document.write($scope.form.name);
-    $scope.edit_count++;
 
   }
 
