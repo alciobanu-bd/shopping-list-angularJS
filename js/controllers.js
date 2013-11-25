@@ -63,9 +63,14 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   }
 
-  $scope.removeAllItems = function () {
+  $scope.removeBoughtItems = function () {
 
-  	$scope.items = [];
+  	for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].bought === true) {
+        $scope.removeItem($scope.items[i].name);
+        i = 0;
+      }
+    };
 
   }
 
