@@ -4,14 +4,14 @@ var shoppingListApp = angular.module('shoppingListApp', []);
 
 shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   $scope.items = [
-    {'name': 'corcoduse',
-    'description': '2 buzunare',
-    'bought': false,
-    'editModeOn': false},
-    {'name': 'mure',
-    'description': '42 kg',
-    'bought': false,
-    'editModeOn': false}
+  {'name': 'corcoduse',
+  'description': '2 buzunare',
+  'bought': false,
+  'editModeOn': false},
+  {'name': 'mure',
+  'description': '42 kg',
+  'bought': false,
+  'editModeOn': false}
   ];
 
   $scope.orderProp = 'bought';
@@ -27,27 +27,27 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   	if ($scope.form.name === '') {
       // null string is not accepted
-    	return;
+      return;
     }
 
-  	for (var i = 0; i < $scope.items.length; i++) {
-  		if ($scope.items[i].name === $scope.form.name) {
+    for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].name === $scope.form.name) {
         // no duplicates
-  			return;
-  		}
-  	};
+        return;
+      }
+    };
 
-  	$scope.items.push({
+    $scope.items.push({
       'name': $scope.form.name,
       'description': $scope.form.description,
-     	'bought': false,
+      'bought': false,
       'editModeOn': false
     });
 
-   	$scope.form.name = '';
-  	$scope.form.description = '';
+    $scope.form.name = '';
+    $scope.form.description = '';
     $scope.edit_count--;
-  	$scope.formVisibilty = false;
+    $scope.formVisibilty = false;
 
   }
 
