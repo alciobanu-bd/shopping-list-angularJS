@@ -2,17 +2,18 @@
 
 var shoppingListApp = angular.module('shoppingListApp', []);
 
-shoppingListApp.controller('ShoppingListCtrl', function($scope) {
-  $scope.items = [
-  {'name': 'corcoduse',
-  'description': '2 buzunare',
-  'bought': false,
-  'editModeOn': false},
-  {'name': 'mure',
-  'description': '42 kg',
-  'bought': false,
-  'editModeOn': false}
-  ];
+shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
+  $scope.items = [{
+    'name': 'corcoduse',
+    'description': '2 buzunare',
+    'bought': false,
+    'editModeOn': false
+  }, {
+    'name': 'mure',
+    'description': '42 kg',
+    'bought': false,
+    'editModeOn': false
+  }];
 
   $scope.orderProp = 'bought';
   $scope.formVisibilty = false; // adding form's visibility
@@ -25,7 +26,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   $scope.addItem = function () {
 
-  	if ($scope.form.name === '') {
+    if ($scope.form.name === '') {
       // null string is not accepted
       return;
     }
@@ -53,11 +54,11 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
 
   $scope.removeItem = function (name) {
 
-  	for (var i = 0; i < $scope.items.length; i++) {
-  		if ($scope.items[i].name === name) {
-  			$scope.items.splice(i, 1);
-  		}
-  	};
+    for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].name === name) {
+        $scope.items.splice(i, 1);
+      }
+    };
 
   }
 
@@ -66,7 +67,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   */
   $scope.removeBoughtItems = function () {
 
-  	for (var i = 0; i < $scope.items.length; i++) {
+    for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].bought === true) {
         $scope.removeItem($scope.items[i].name);
         i--; // for loop reverts to search
@@ -85,8 +86,7 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
       if ($scope.items[i].name === name) {
         if ($scope.items[i].bought === false) {
           $scope.items[i].bought = true;
-        }
-        else {
+        } else {
           $scope.items[i].bought = false;
         }
       }
@@ -99,11 +99,11 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   */
   $scope.checkCheckbox = function (name) {
 
-  	for (var i = 0; i < $scope.items.length; i++) {
-  		if ($scope.items[i].name === name) {
-  			return $scope.items[i].bought;
-  		}
-  	};
+    for (var i = 0; i < $scope.items.length; i++) {
+      if ($scope.items[i].name === name) {
+        return $scope.items[i].bought;
+      }
+    };
 
   }
 
@@ -112,33 +112,31 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
   */
   $scope.strikeItemOrNotClass = function (bought) {
 
-  	if (bought) {
-  		return "strike";
-  	}
-  	else {
-  		return "black";
-  	}
+    if (bought) {
+      return "strike";
+    } else {
+      return "black";
+    }
 
   }
 
   $scope.showForm = function () {
 
-  	if ($scope.formVisibilty || $scope.edit_count > 0) {
-  		return;
-  	}
-  	$scope.formVisibilty = true;
+    if ($scope.formVisibilty || $scope.edit_count > 0) {
+      return;
+    }
+    $scope.formVisibilty = true;
     $scope.edit_count++;
 
   }
 
   $scope.isVisible = function () {
 
-  	if ($scope.formVisibilty) {
-  		return "shown";
-  	}
-  	else {
-  		return "hidden";
-  	}
+    if ($scope.formVisibilty) {
+      return "shown";
+    } else {
+      return "hidden";
+    }
 
   }
 
@@ -179,20 +177,18 @@ shoppingListApp.controller('ShoppingListCtrl', function($scope) {
       if ($scope.items[i].name === name) {
         if (!$scope.items[i].editModeOn) {
           // preparing to enter edit mode
-          if ($scope.edit_count == 0)  { 
+          if ($scope.edit_count == 0) {
             // if another item is being currently edited, quits edit mode
             $scope.form.name = $scope.items[i].name; // copies the name of the item to the text input view
             $scope.form.description = $scope.items[i].description; // copies the description of an item to input
             $scope.items[i].editModeOn = true; // flags that item enters edit mode
             $scope.edit_count++;
             return;
-          }
-          else {
+          } else {
             // item is already checked, it can't be edited
             return;
           }
-        }
-        else {
+        } else {
           // if edit mode is on, item is going to be edited
           if ($scope.form.name === '') {
             return;
