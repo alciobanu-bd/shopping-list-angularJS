@@ -10,6 +10,9 @@
 	<body ng-controller="ShoppingListCtrl">
 
 		<div>
+			<span>
+				Select a category:
+			</span>
 			<select ng-model="selectModel">
 				<option ng-repeat="category in categories" value={{category}}>{{category}}</option>
 			</select>
