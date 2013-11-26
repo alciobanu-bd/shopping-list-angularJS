@@ -74,7 +74,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
 
     if ($scope.form.name === '') {
       // null string is not accepted
-      alert('You must add a name.');
+      alert('You must add a name for the item.');
       return;
     }
 
@@ -87,6 +87,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === $scope.form.name) {
         // no duplicates
+        alert('Item already exists. Add another name.');
         return;
       }
     };
@@ -257,6 +258,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
         } else {
           // if edit mode is on, item is going to be edited
           if ($scope.form.name === '') {
+            alert('You must type a name.');
             return;
           }
           $scope.items[i].name = $scope.form.name; // saves the name from model (model is what user typed in textbox)
