@@ -9,7 +9,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
     image: 'img/'
   }, {
     'name': 'Aliments',
-    'img': 'img/watermelon.jpg'
+    'img': 'img/fastfood.gif'
   }, {
     'name': 'Medical',
     'img': 'img/medicalsign.jpg'
