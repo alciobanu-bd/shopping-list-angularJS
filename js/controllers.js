@@ -12,13 +12,13 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
     'img': 'img/fastfood.gif'
   }, {
     'name': 'Medical',
-    'img': 'img/medicalsign.jpg'
+    'img': 'img/medicalsign.png'
   }, {
     'name': 'Hygiene',
-    'img': 'img/cleanhands.jpg'
+    'img': 'img/cleanhands.png'
   }, {
     'name': 'Others',
-    'img': 'img/others.jpg'
+    'img': 'img/others.png'
   }];
 
   $scope.items = [{
@@ -242,7 +242,11 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
 
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === name) {
-        if (!$scope.items[i].editModeOn && !$scope.items[i].bought) {
+        if (!$scope.items[i].editModeOn) {
+          if ($scope.items[i].bought === true) {
+            // can't enter edit mode if item is checked as bought
+            return;
+          }
           // preparing to enter edit mode
           if ($scope.edit_count === 0) {
             // if another item is being currently edited, quits edit mode

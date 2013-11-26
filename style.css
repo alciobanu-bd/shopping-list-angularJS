@@ -13,3 +13,31 @@
 	display: inline;
 }
 
+.mainDiv {
+	text-align: center;
+	display: block;
+	background-color: #A8A8A8;
+}
+
+.listCenter {
+	margin-left: 35%;
+	text-align: left;
+}
+
+.styled-button {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	color:#333;
+	background-color:#FA2;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:none;
+	font-family:'Helvetica Neue',Arial,sans-serif;
+	font-size:11px;
+	font-weight:700;
+	height:22px;
+	padding:4px 12px;
+	text-shadow:#FE6 0 1px 0
+}
