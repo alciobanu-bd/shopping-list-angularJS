@@ -6,21 +6,46 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
   $scope.items = [{
     'name': 'corcoduse',
     'description': '2 buzunare',
+    'category': 'Aliments',
     'bought': false,
     'editModeOn': false
   }, {
-    'name': 'mure',
-    'description': '42 kg',
+    'name': 'piersici',
+    'description': '3',
+    'category': 'Aliments',
+    'bought': false,
+    'editModeOn': false
+  }, {
+    'name': 'aspirina',
+    'description': '3 pastile',
+    'category': 'Medical',
+    'bought': false,
+    'editModeOn': false
+  }, {
+    'name': 'detergent',
+    'description': 'pentru haine albe',
+    'category': 'Hygiene',
+    'bought': false,
+    'editModeOn': false
+  }, {
+    'name': 'creion',
+    'description': 'cu mina',
+    'category': 'Others',
     'bought': false,
     'editModeOn': false
   }];
 
   $scope.orderProp = 'bought';
+  $scope.categories = [
+    '', 'Aliments', 'Medical', 'Hygiene', 'Others'
+  ];
+  $scope.selectModel = '';
   $scope.formVisibilty = false; // adding form's visibility
   $scope.form = { // model for the adding/editing input tag
     // when the input in a form changes, this model changes
     'name': '',
-    'description': ''
+    'description': '',
+    'category': ''
   };
   $scope.edit_count = 0; // used to stop possibility of editing 2 items at the same time
 
@@ -28,6 +53,13 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
 
     if ($scope.form.name === '') {
       // null string is not accepted
+      alert('You must add a name.');
+      return;
+    }
+
+    if ($scope.form.category === '') {
+      // null category is not accepted
+      alert('You must include your item in a category.');
       return;
     }
 
@@ -41,6 +73,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
     $scope.items.push({
       'name': $scope.form.name,
       'description': $scope.form.description,
+      'category': $scope.form.category,
       'bought': false,
       'editModeOn': false
     });
