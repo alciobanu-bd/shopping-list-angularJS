@@ -13,14 +13,17 @@
 			<span>
 				Select a category:
 			</span>
-			<select ng-model="selectModel">
-				<option ng-repeat="category in categories" value={{category}}>{{category}}</option>
+			<select ng-model="selectModel.name">
+				<option ng-repeat="category in categories" value={{category.name}}>{{category.name}}</option>
 			</select>
 			<ul>
-				<li style="list-style-type: none;" ng-repeat="item in items | filter:selectModel | orderBy:orderProp">
+				<li style="list-style-type: none;" ng-repeat="item in items | filter:selectModel.name | orderBy:orderProp">
 					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name)">
 					</input>
 					<span ng-class="strikeItemOrNotClass(item.bought)">
+						<span>
+							<img src={{item.category.img}} />
+						</span>
 						<span ng-class="visibilityTextNormalMode(item.editModeOn)">
 							{{item.name}}
 						</span>
@@ -47,8 +50,8 @@
 				</input>
 				<input type="text" placeholder="Description" ng-model="form.description" ng-class="isVisible()">
 				</input>
-				<select ng-model="form.category" ng-class="isVisible()">
-					<option ng-repeat="category in categories" value={{category}}>{{category}}</option>
+				<select ng-model="form.category.name" ng-class="isVisible()">
+					<option ng-repeat="category in categories" value={{category.name}}>{{category.name}}</option>
 				</select>
 				<input type="button" value = "Add" ng-model="add" ng-class="isVisible()" ng-click="addItem()">
 				</input>

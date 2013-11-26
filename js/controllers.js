@@ -3,49 +3,70 @@
 var shoppingListApp = angular.module('shoppingListApp', []);
 
 shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
+
+  $scope.categories = [{
+    name: '',
+    image: 'img/'
+  }, {
+    'name': 'Aliments',
+    'img': 'img/watermelon.jpg'
+  }, {
+    'name': 'Medical',
+    'img': 'img/medicalsign.jpg'
+  }, {
+    'name': 'Hygiene',
+    'img': 'img/cleanhands.jpg'
+  }, {
+    'name': 'Others',
+    'img': 'img/others.jpg'
+  }];
+
   $scope.items = [{
     'name': 'corcoduse',
     'description': '2 buzunare',
-    'category': 'Aliments',
+    'category': $scope.categories[1],
     'bought': false,
     'editModeOn': false
   }, {
     'name': 'piersici',
     'description': '3',
-    'category': 'Aliments',
+    'category': $scope.categories[1],
     'bought': false,
     'editModeOn': false
   }, {
     'name': 'aspirina',
     'description': '3 pastile',
-    'category': 'Medical',
+    'category': $scope.categories[2],
     'bought': false,
     'editModeOn': false
   }, {
     'name': 'detergent',
     'description': 'pentru haine albe',
-    'category': 'Hygiene',
+    'category': $scope.categories[3],
     'bought': false,
     'editModeOn': false
   }, {
     'name': 'creion',
     'description': 'cu mina',
-    'category': 'Others',
+    'category': $scope.categories[4],
     'bought': false,
     'editModeOn': false
   }];
 
   $scope.orderProp = 'bought';
-  $scope.categories = [
-    '', 'Aliments', 'Medical', 'Hygiene', 'Others'
-  ];
-  $scope.selectModel = '';
+  $scope.selectModel = {
+    'name': '',
+    'img': 'img/'
+  };
   $scope.formVisibilty = false; // adding form's visibility
   $scope.form = { // model for the adding/editing input tag
     // when the input in a form changes, this model changes
     'name': '',
     'description': '',
-    'category': ''
+    'category': {
+      'name': '',
+      'img': 'img/'
+    }
   };
   $scope.edit_count = 0; // used to stop possibility of editing 2 items at the same time
 
@@ -67,6 +88,12 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
       if ($scope.items[i].name === $scope.form.name) {
         // no duplicates
         return;
+      }
+    };
+
+    for (var i = 0; i < $scope.categories.length; i++) {
+      if ($scope.categories[i].name === $scope.form.category.name) {
+        $scope.form.category.img = $scope.categories[i].img;
       }
     };
 
