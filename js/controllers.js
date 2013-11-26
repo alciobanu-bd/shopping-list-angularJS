@@ -105,8 +105,14 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
       'editModeOn': false
     });
 
-    $scope.form.name = '';
-    $scope.form.description = '';
+    $scope.form = {
+      'name': '',
+      'description': '',
+      'category': {
+        'name': '',
+        'img': 'img/'
+      }
+    };
     $scope.edit_count--;
     $scope.formVisibilty = false;
 
