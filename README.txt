@@ -7,5 +7,4 @@ Posibilitate de a afișa lista care conține elemente doar de o anumită categor
 
 Elementele din listă sunt ordonate astfel încât produsele bifate (și tăiate de pe listă) să fie ultimele.
 
-UPDATE 11:00 AM, marti, 26 Nov
 Pentru simplitate, pagina poate fi văzută și la adresa http://swarm.cs.pub.ro/~aciobanu/shopping-list/

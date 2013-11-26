@@ -78,7 +78,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
       return;
     }
 
-    if ($scope.form.category === '') {
+    if ($scope.form.category.name === '') {
       // null category is not accepted
       alert('You must include your item in a category.');
       return;
@@ -241,9 +241,9 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
 
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === name) {
-        if (!$scope.items[i].editModeOn) {
+        if (!$scope.items[i].editModeOn && !$scope.items[i].bought) {
           // preparing to enter edit mode
-          if ($scope.edit_count == 0) {
+          if ($scope.edit_count === 0) {
             // if another item is being currently edited, quits edit mode
             $scope.form.name = $scope.items[i].name; // copies the name of the item to the text input view
             $scope.form.description = $scope.items[i].description; // copies the description of an item to input
