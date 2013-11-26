@@ -20,29 +20,31 @@
 				<li style="list-style-type: none;" ng-repeat="item in items | filter:selectModel.name | orderBy:orderProp">
 					<input type="checkbox" ng-model="checkbox" ng-checked="checkCheckbox(item.name)" ng-change="checkBoughtItem(item.name)">
 					</input>
-					<span ng-class="strikeItemOrNotClass(item.bought)">
-						<span>
-							<img src={{item.category.img}} />
-						</span>
-						<span ng-class="visibilityTextNormalMode(item.editModeOn)">
-							<span class="text-items">
-								{{item.name}}
-							</span>
-						</span>
-						<input type="text" ng-model="form.name" ng-class="visibilityTextEditMode(item.editModeOn)">
-						</input>
-						<span ng-class="visibilityTextNormalMode(item.editModeOn)">
-							<span class="text-items">
-								({{item.description}})
-							</span>
-						</span>
-						<input type="text" ng-model="form.description" ng-class="visibilityTextEditMode(item.editModeOn)">
-						</input>
-					</span>
 					<span>
-						<input type="button" value="Edit" ng-click="editItem(item.name)" class="styled-button">
-						</input>
-						<input type="button" value="Remove" ng-click="removeItem(item.name)" class="styled-button">
+						<span>
+							<input type="button" value="Edit" ng-click="editItem(item.name)" class="styled-button">
+							</input>
+							<input type="button" value="x" ng-click="removeItem(item.name)" class="styled-button">
+							</input>
+						</span>
+						<span ng-class="strikeItemOrNotClass(item.bought)">
+							<span>
+								<img src={{item.category.img}} />
+							</span>
+							<span ng-class="visibilityTextNormalMode(item.editModeOn)">
+								<span class="text-items">
+									{{item.name}}
+								</span>
+							</span>
+							<input type="text" ng-model="form.name" class="text-items" ng-class="visibilityTextEditMode(item.editModeOn)">
+							</input>
+							<span ng-class="visibilityTextNormalMode(item.editModeOn)">
+								<span class="text-items">
+									({{item.description}})
+								</span>
+							</span>
+						</span>
+						<input type="text" ng-model="form.description" class="text-items" ng-class="visibilityTextEditMode(item.editModeOn)">
 						</input>
 					</span>
 				</li>
