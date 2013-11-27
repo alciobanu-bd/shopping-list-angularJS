@@ -124,7 +124,7 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
     for (var i = 0; i < $scope.items.length; i++) {
       if ($scope.items[i].name === name) {
         if ($scope.items[i].editModeOn) {
-          $scope.edit_count = 0;
+          $scope.edit_count--;
         }
         $scope.items.splice(i, 1);
       }
@@ -278,6 +278,17 @@ shoppingListApp.controller('ShoppingListCtrl', function ($scope) {
         }
       }
     };
+
+  }
+
+  $scope.getEditIcon = function (editModeOn) {
+
+    if (editModeOn) {
+      return '\u2713';
+    }
+    else {
+      return 'Edit';
+    }
 
   }
 

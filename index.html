@@ -22,7 +22,7 @@
 					</input>
 					<span>
 						<span>
-							<input type="button" value="Edit" ng-click="editItem(item.name)" class="styled-button">
+							<input type="button" ng-value="getEditIcon(item.editModeOn)" ng-click="editItem(item.name)" class="styled-button">
 							</input>
 							<input type="button" value="x" ng-click="removeItem(item.name)" class="styled-button">
 							</input>
